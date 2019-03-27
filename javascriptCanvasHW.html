@@ -14,6 +14,7 @@
 
 		#container{
 			position: relative;
+			/*width the div takes up on screen*/
 			width: 80%;
 			height: 80%;
 			background-color: black;
@@ -23,6 +24,7 @@
 </head>
 <body>
 	<div id="container">
+		<!-- dimensions here just in case -->
 		<canvas id="canvas" width="500" height="500">
 			this a canvas that can be drawn on
 		</canvas>
@@ -31,7 +33,7 @@
 
 	<script>
 		var canvas = document.querySelector("#canvas");
-		//responsive can
+		//responsive canvas sizing that does not warp the drawing! (maybe)
 		canvas.style.width='100%';
 		canvas.style.height='100%';
 		canvas.width  = canvas.offsetWidth;
@@ -51,6 +53,12 @@
 		}
 
 		window.addEventListener('mousemove', function (e) {
+			x = e.pageX;
+			y = e.pageY;
+			draw()
+		});
+
+		window.addEventListener('touchmove', function (e) {
 			x = e.pageX;
 			y = e.pageY;
 			draw()

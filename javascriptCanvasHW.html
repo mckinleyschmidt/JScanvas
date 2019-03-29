@@ -59,8 +59,8 @@
 		});
 
 		window.addEventListener('touchmove', function (e) {
-			x = e.pageX;
-			y = e.pageY;
+			x = event.touches[0].clientX;
+  			y = event.touches[0].clientY;
 			draw()
 		});
 

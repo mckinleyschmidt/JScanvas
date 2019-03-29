@@ -5,6 +5,7 @@
 	<style>
 		html, body{
 			height: 100%;
+			overflow: hidden;
 		}
 
 		#canvas{
@@ -106,6 +107,7 @@
 // listener to clear canvas on resize/orientation change
 		window.addEventListener('resize', function(e) {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			// to make sure that the ctx is not distorted
 			canvas.width = canvas.offsetWidth;
 			canvas.height = canvas.offsetHeight;
 		});

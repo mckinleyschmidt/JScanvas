@@ -26,17 +26,17 @@
 	<div id="container">
 		<!-- dimensions here just in case -->
 		<canvas id="canvas" width="500" height="500">
-			this a canvas that can be drawn on
+			this is a canvas that can be drawn on. if you are seeing this message it is because your browser does not support the canvas.
 		</canvas>
+		<input type="color" value="#FF0000" id="col-pic"/>
 	</div>
-	
 
 	<script>
 		var canvas = document.querySelector("#canvas");
 		// responsive canvas sizing that does not warp the drawing! (maybe)
 		// borrowed from http://jsfiddle.net/PQS3A/7/ & https://codepen.io/rurxs/pen/JNNyqE
-		canvas.style.width='100%';
-		canvas.style.height='100%';
+		canvas.style.width ='100%';
+		canvas.style.height ='100%';
 		canvas.width  = canvas.offsetWidth;
 		canvas.height = canvas.offsetHeight;
 		
@@ -53,9 +53,9 @@
 			ctx.fill();
 		}
 
+
 // listener to draw on canvas with mouse movements
 		window.addEventListener('mousemove', function (e) {
-			console.log("mouse draw is working")
 			x = e.pageX;
 			y = e.pageY;
 			draw()
@@ -91,20 +91,32 @@
 
 // listener to size pen up and down
 		window.addEventListener('keydown', function(e) {
-			console.log(radius)
 			if (e.keyCode == 38){
+				console.log("size: " + radius)
 				radius +=1
 			}
 			else if (e.keyCode == 40 && radius > 1){
-				radius -=1
+				console.log("size: " + radius)
+				radius -=1			
+
 			}
 			draw()
 		});
 
+// listener to clear canvas on resize/orientation change
 		window.addEventListener('resize', function(e) {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-		})
+			canvas.width = canvas.offsetWidth;
+			canvas.height = canvas.offsetHeight;
+		});
 
+		window.addEventListener('change', function(e) {
+			var newColor = document.querySelector('#col-pic').value;
+			color = newColor
+			console.log(newColor)
+			// color = newColor;
+			draw();
+		});
 	</script>
 
 </body>

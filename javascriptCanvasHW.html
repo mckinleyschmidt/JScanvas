@@ -28,8 +28,8 @@
 		<canvas id="canvas" width="500" height="500">
 			this is a canvas that can be drawn on. if you are seeing this message it is because your browser does not support the canvas.
 		</canvas>
-		<input type="color" value="#FF0000" id="col-pic"/>
 	</div>
+	<input type="color" value="#FF0000" id="col-pic"/>
 
 	<script>
 		var canvas = document.querySelector("#canvas");
@@ -67,10 +67,11 @@
 			x = e.touches[0].clientX;
   			y = e.touches[0].clientY;
 			draw()
-		}, false);
+		});
 
 // listener to change colors and clear the canvas
 		window.addEventListener('keydown', function(e){
+			console.log(e.keyCode)
 			if (e.keyCode == 66){
 				color = "blue";
 			}	
@@ -89,6 +90,14 @@
 			draw()
 		});
 
+// listener to select color from color picker
+		window.addEventListener('change', function(e) {
+			var newColor = document.querySelector('#col-pic').value;
+			color = newColor
+			console.log(newColor)
+			draw();
+		});
+
 // listener to size pen up and down
 		window.addEventListener('keydown', function(e) {
 			if (e.keyCode == 38){
@@ -98,7 +107,6 @@
 			else if (e.keyCode == 40 && radius > 1){
 				console.log("size: " + radius)
 				radius -=1			
-
 			}
 			draw()
 		});
@@ -109,14 +117,6 @@
 			// to make sure that the ctx is not distorted
 			canvas.width = canvas.offsetWidth;
 			canvas.height = canvas.offsetHeight;
-		});
-
-		window.addEventListener('change', function(e) {
-			var newColor = document.querySelector('#col-pic').value;
-			color = newColor
-			console.log(newColor)
-			// color = newColor;
-			draw();
 		});
 	</script>
 
